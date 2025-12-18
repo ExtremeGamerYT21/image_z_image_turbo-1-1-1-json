@@ -1,0 +1,428 @@
+{
+  "input": {
+    "workflow": {
+      "9": {
+        "inputs": {
+          "filename_prefix": "z-image",
+          "images": [
+            "43",
+            0
+          ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+          "title": "SaveImage"
+        }
+      },
+      "39": {
+        "inputs": {
+          "filename": "qwen_3_4b.safetensors"
+        },
+        "class_type": "CLIPLoader",
+        "_meta": {
+          "title": "CLIPLoader"
+        }
+      },
+      "40": {
+        "inputs": {
+          "filename": "ae.safetensors"
+        },
+        "class_type": "VAELoader",
+        "_meta": {
+          "title": "VAELoader"
+        }
+      },
+      "41": {
+        "inputs": {
+          "width": 1024,
+          "height": 1024,
+          "batch_size": 1
+        },
+        "class_type": "EmptySD3LatentImage",
+        "_meta": {
+          "title": "EmptySD3LatentImage"
+        }
+      },
+      "42": {
+        "inputs": {
+          "conditioning": [
+            "45",
+            0
+          ]
+        },
+        "class_type": "ConditioningZeroOut",
+        "_meta": {
+          "title": "ConditioningZeroOut"
+        }
+      },
+      "43": {
+        "inputs": {
+          "samples": [
+            "44",
+            0
+          ],
+          "vae": [
+            "40",
+            0
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "44": {
+        "inputs": {
+          "seed": 882813837336634,
+          "steps": 9,
+          "cfg": 1.4,
+          "sampler_name": "res_multistep",
+          "scheduler": "simple",
+          "denoise": 1,
+          "model": [
+            "47",
+            0
+          ],
+          "positive": [
+            "45",
+            0
+          ],
+          "negative": [
+            "42",
+            0
+          ],
+          "latent_image": [
+            "41",
+            0
+          ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+          "title": "KSampler"
+        }
+      },
+      "45": {
+        "inputs": {
+          "text": "A caucasian 18 year old futanari girl with a stereotypical german face and thick and free flowing long natural almost platinum gold blonde hair, heavy makeup, pale white skin and pale blonde eyebrows looking at her cellphone camera with her light crystal blue eyes and a very smug grin while her left arm is reaching out to hold the current camera. She is positioned to the side of the image. She is sitting at the rectangular dinner table in a chair to take an amateur pornographic selfie. She has a small christian cross necklace on her neck, she wears a set of childish white and pink pajamas that have cartoonish strawberry prints intended for children's clothing, a revealing crop top with her large breasts and tiny sleep shorts, her long torso, navel and one breast visible, having wide hips and a small waist. Detailed nipple, visible breast. The image is centered at a guy, a pale skinned and dark haired teenager with a sharp jaw, a casual gray t-shirt and handsome face preparing food in the far background over the kitchen counter, unaware of the photo. Her other hand pulls her crop top up just enough to show her breast completely. Quick photo, amateur photo, creep shot.\nThe photo frames the kitchen from a comfortable, eye-level perspective. In the shot, a black, large and rectangular wooden tabletop appears in the foreground. Beyond it, a bright white kitchen stretching across the background with a large island with its light countertop, the hanging pendant lights, and the symmetrical cabinetry reaching up to the ceiling. The stainless range hood and subway-tile backsplash sit clearly in view, along with the neatly arranged decor on the counters. The dark hardwood floor create strong contrast against the white surfaces, the wide windows on top of the sink spill in natural light, giving the entire scene a clean, polished, almost showroom-like appearance. The room is vast, having a double glass door to the left of the image leading to a large backyard and an open entrance to the far right that leads out of the kitchen",
+          "clip": [
+            "39",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "46": {
+        "inputs": {
+          "filename": "z_image_turbo_bf16.safetensors"
+        },
+        "class_type": "UNETLoader",
+        "_meta": {
+          "title": "UNETLoader"
+        }
+      },
+      "47": {
+        "inputs": {
+          "value": 2.68,
+          "model": [
+            "48",
+            0
+          ]
+        },
+        "class_type": "ModelSamplingAuraFlow",
+        "_meta": {
+          "title": "ModelSamplingAuraFlow"
+        }
+      },
+      "48": {
+        "inputs": {
+          "filename": "nicegirls_Zimage.safetensors",
+          "model": [
+            "46",
+            0
+          ]
+        },
+        "class_type": "LoraLoaderModelOnly",
+        "_meta": {
+          "title": "LoraLoaderModelOnly"
+        }
+      },
+      "56": {
+        "inputs": {
+          "filename": "pixel_art_style_z_image_turbo.safetensors"
+        },
+        "class_type": "LoraLoaderModelOnly",
+        "_meta": {
+          "title": "LoraLoaderModelOnly"
+        }
+      },
+      "57": {
+        "inputs": {
+          "seed": 215540271294256,
+          "steps": 30,
+          "cfg": 4.1,
+          "sampler_name": "dpmpp_2m_sde",
+          "scheduler": "karras",
+          "denoise": 0.37,
+          "model": [
+            "48",
+            0
+          ],
+          "positive": [
+            "45",
+            0
+          ],
+          "negative": [
+            "42",
+            0
+          ],
+          "latent_image": [
+            "61",
+            0
+          ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+          "title": "KSampler"
+        }
+      },
+      "58": {
+        "inputs": {
+          "model_name": "remacri_original.safetensors"
+        },
+        "class_type": "UpscaleModelLoader",
+        "_meta": {
+          "title": "UpscaleModelLoader"
+        }
+      },
+      "59": {
+        "inputs": {
+          "upscale_model": [
+            "58",
+            0
+          ],
+          "image": [
+            "43",
+            0
+          ]
+        },
+        "class_type": "ImageUpscaleWithModel",
+        "_meta": {
+          "title": "ImageUpscaleWithModel"
+        }
+      },
+      "60": {
+        "inputs": {
+          "text": "lanczos",
+          "image": [
+            "59",
+            0
+          ]
+        },
+        "class_type": "ImageScaleBy",
+        "_meta": {
+          "title": "ImageScaleBy"
+        }
+      },
+      "61": {
+        "inputs": {
+          "pixels": [
+            "60",
+            0
+          ],
+          "vae": [
+            "40",
+            0
+          ]
+        },
+        "class_type": "VAEEncode",
+        "_meta": {
+          "title": "VAEEncode"
+        }
+      },
+      "62": {
+        "inputs": {
+          "filename": "bbox/hand_yolov8s.pt"
+        },
+        "class_type": "UltralyticsDetectorProvider",
+        "_meta": {
+          "title": "UltralyticsDetectorProvider"
+        }
+      },
+      "63": {
+        "inputs": {
+          "filename": "sam_vit_b_01ec64.pth"
+        },
+        "class_type": "SAMLoader",
+        "_meta": {
+          "title": "SAMLoader"
+        }
+      },
+      "64": {
+        "inputs": {
+          "text": "masterpiece, best quality, ultra-detailed, realistic skin, intricate details, highres, 1girl,curvaceous, (smiling: 1.5), beautiful blue eyes, (perfect hands: 1.2)",
+          "clip": [
+            "39",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "65": {
+        "inputs": {
+          "text": "low quality, worst quality, blurry, flurry face, (deformed:1.3), extra fingers, cartoon, 3d, anime, bad anatomy, fat, gay, underpants, string in crotch, panties, ripped clothes, disfigured hands, bad fingers",
+          "clip": [
+            "39",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "66": {
+        "inputs": {
+          "value": 256,
+          "image": [
+            "69",
+            0
+          ],
+          "positive": [
+            "67",
+            0
+          ],
+          "negative": [
+            "68",
+            0
+          ],
+          "bbox_detector": [
+            "62",
+            0
+          ]
+        },
+        "class_type": "FaceDetailer",
+        "_meta": {
+          "title": "FaceDetailer"
+        }
+      },
+      "67": {
+        "inputs": {
+          "text": "perfect fingers, good hand, masterpiece, beautiful"
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "68": {
+        "inputs": {
+          "text": "low quality, worst quality, blurry, flurry face, (deformed:1.3), extra fingers, cartoon, 3d, anime, bad anatomy, fat, bad fingers, deformed fingers, bad hands"
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "69": {
+        "inputs": {
+          "value": 256,
+          "image": [
+            "71",
+            0
+          ],
+          "positive": [
+            "72",
+            0
+          ],
+          "negative": [
+            "73",
+            0
+          ],
+          "bbox_detector": [
+            "74",
+            0
+          ],
+          "sam_model_opt": [
+            "70",
+            0
+          ]
+        },
+        "class_type": "FaceDetailer",
+        "_meta": {
+          "title": "FaceDetailer"
+        }
+      },
+      "70": {
+        "inputs": {
+          "filename": "sam_vit_b_01ec64.pth"
+        },
+        "class_type": "SAMLoader",
+        "_meta": {
+          "title": "SAMLoader"
+        }
+      },
+      "71": {
+        "inputs": {
+          "samples": [
+            "57",
+            0
+          ],
+          "vae": [
+            "40",
+            0
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "72": {
+        "inputs": {
+          "text": "(smiling: 1.5), beautiful blue eyes, perfect teeth, natural face, (14 years old: 2)"
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "73": {
+        "inputs": {
+          "text": "low quality, worst quality, blurry, flurry face, (deformed:1.3), extra fingers, cartoon, 3d, anime, bad anatomy, fat, bad teeth, model face, makeup, plastic surgery, plump lips"
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "74": {
+        "inputs": {
+          "filename": "bbox/face_yolov8m.pt"
+        },
+        "class_type": "UltralyticsDetectorProvider",
+        "_meta": {
+          "title": "UltralyticsDetectorProvider"
+        }
+      },
+      "75": {
+        "inputs": {
+          "filename_prefix": "z-image",
+          "images": [
+            "71",
+            0
+          ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+          "title": "SaveImage"
+        }
+      }
+    }
+  }
+}
